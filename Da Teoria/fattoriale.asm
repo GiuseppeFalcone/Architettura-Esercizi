@@ -2,11 +2,44 @@
 .text
 
 _start:
-	li a0, 5
+	# Stampa intestazione
+	la a0, messaggio 
+	addi a7, zero, 4 
+	ecall
 	
-	jal fact
+	# Stampa richiesta
+	la a0, insdati 
+	addi a7, zero, 4 
+	ecall
 	
-	add t0, a0, zero
+	# legge n (valore in a0)
+	addi a7, zero, 5 
+	ecall
+
+	# chiama fact(n)
+	jal fact	# parametro n in a0
+	add s0, a0, zero	# salva il risultato in sO
+	
+	# stampa messaggio per il risultato
+	la a0, visris 
+	addi a7, zero, 4
+	ecall
+	
+	# stampa n!
+	add a0, s0, zero 
+	addi a7, zero, 1
+	ecall
+	
+	# stampa \n
+	la a0, RTN
+	addi a7, zero, 4
+	ecall
+
+	# exit
+	addi a7, zero, 10
+	ecall
+	
+	
 
 fact:
 	# Creazione del frame di attivazione funzione
@@ -36,3 +69,8 @@ fact:
 		jr ra
 
 .data
+	messaggio:	.asciz "Fattoriale\n"
+	insdati:	.asciz "Inserire n = "
+	insaltezza:	.asciz "Altezza = "
+	visris:		.asciz "n! = "
+	RTN:		.asciz "\n"
