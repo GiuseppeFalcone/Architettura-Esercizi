@@ -37,7 +37,7 @@ area:
 	addi sp, sp, -24	# spostare stack pointer di 3 pos per allocare il call frame nello stack
 	sd fp, 0(sp)	# salvare il precedente frame pointer
 	sd ra, 8(sp)	# salvare indirizzo di ritorno al main
-	addi fp, sp, 16 # aggiornamento del fram pointer per la prossima funzione (moltiplicazione)
+	addi fp, sp, 16 # aggiornamento del fram pointer 
 	
 	# chiamare moltiplicazione:
 	jal ra, moltiplicazione
